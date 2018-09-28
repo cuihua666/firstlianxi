@@ -1,0 +1,94 @@
+/*设置margin、padding的用处：
+  主要有一下几点原因：
+1、默认的块元素有些会自带margin或者padding。
+2、body默认就会有8个像素margin，这样设定后可以清除body的margin。
+3、清除这些元素的默认margin和padding后我们自定义的css样式才不会有偏差。
+4、同时设置margin为0也有为了居中对其的目的。
+*/
+
+
+*
+{
+  margin:0;
+  padding:0;
+  text-decoration: none;
+  list-style: none;
+}
+
+#frame/*相当下面div定位的祖先元素*/
+{
+  position: relative;
+  width: 790px;
+  height: 340px;
+  overflow: hidden;
+  margin: 50px auto;/*可以使得图片水平居中 分别表示上下、左右，如果想要垂直居中的话，上下的外边距需要设置为25%*/
+  /*上面的设置可以等价为以下三条语句*/
+  /*margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;*/
+}
+
+#pic
+{
+  position: relative;/*相对于其最近的祖先元素进行定位,每次移动的是整个div*/
+  width: 6320px;
+  height: 340px;
+}
+#pic ul
+{
+  position: absolute;
+}
+#pic ul li
+{
+  float: left;
+  width: 790px;
+  height: 340px;
+}
+
+#tab
+{
+  position: absolute;
+  left: 290px;
+  bottom: 0;/*这里面为什么不能使用margin-bottom？*/
+}
+
+#tab li
+{
+  float: left;
+  width: 12px;
+  height: 12px;
+  margin-left: 5px;
+  margin-bottom: 2px;
+  border-radius: 50%;/*添加圆角边框*/
+  background-color: #cccccc;
+  cursor: pointer;
+}
+#tab li.on
+{
+  background-color: coral;
+}
+
+#btn p
+{
+  position: absolute;
+  top: 140px;
+  height: 60px;
+  background: rgba(0,0,0,.5);
+  width: 50px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 40px;
+  color: #fff;
+}
+#btn p.btn-left
+{
+  left: 0;
+}
+#btn p.btn-right
+{
+  right: 0;
+}
+#btn p:hover
+{
+  background-color: #999999;
+}

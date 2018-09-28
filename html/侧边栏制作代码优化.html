@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+  #div1
+  {
+    height:200px;
+    width:100px;
+    background-color:aqua;
+    position:absolute;
+    top:50px;
+    left:-100px;
+  }
+  #div1 span
+  {
+    position: absolute;/*这边必须要加position：absoulte*/
+    height: 50px;
+    width: 20px;
+    background-color: #222222;
+    left: 100px;
+    top: 50px;
+  }
+</style>
+<body>
+<div id="div1">
+  <span>显示</span>
+</div>
+
+  <script>
+    var timer=null;
+    var oDiv=document.getElementById('div1');
+    oDiv.onmouseover=function()
+    {
+      startMove(10,0);
+    };
+    oDiv.onmouseout=function ()
+    {
+      startMove(-10,-100);
+
+    };
+
+    /*该函数的作用的显示整个提示栏*/
+    function startMove(Speed,iTarget)
+    {
+      clearInterval(timer);
+      timer=setInterval(function()
+      {
+        if (oDiv.offsetLeft==iTarget)
+        {
+          clearInterval(timer);
+        }
+        else
+        {
+          oDiv.style.left=oDiv.offsetLeft+Speed+'px';
+        }
+      },50)
+    }
+  </script>
+</body>
+</html>

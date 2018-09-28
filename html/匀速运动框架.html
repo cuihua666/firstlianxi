@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    #div1
+    {
+      width:200px;
+      height:200px;
+      background-color: red;
+      left: 0;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+<input type="button" id="button1" value="向右运动" onclick="startMove()"/>
+
+<div id="div1">
+</div>
+
+<script>
+  var timer=null;/*定时一个全局变量，timer，其值为空*/
+  function startMove()
+  {
+    var speed=10;
+    var oDiv = document.getElementById('div1');
+    /*在每次单击事件启动定时器之前，关闭其他定时器，保证每次只有一个定时器在工作*/
+    clearInterval(timer);
+    timer = setInterval(
+      function ()  /*要确定定时器的位置*/
+      {
+        if (oDiv.offsetLeft<600)
+        {
+          oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+        }
+        else
+        {
+          clearInterval(timer);
+        }
+      }
+      , 30);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> </title>
+  <style>
+    div
+    {
+      height: 150px;
+      width: 150px;
+      background-color: #222222;
+      margin: 20px;
+      float: left;
+      filter: alpha(opacity:20);
+      opacity: 0.2;
+    }
+  </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<script>
+  var oDiv=document.getElementsByTagName('div');
+  var speed=0;
+  for (var i=0;i<oDiv.length;i++)
+  {
+    oDiv[i].alpha=20;/*自定义对象属性（这里应该设置为全局变量，且该值与style中定义的透明度相等）*/
+    oDiv[i].timer=null;
+    oDiv[i].onmouseover=function()
+    {
+      startMove(this,100);
+    };
+    oDiv[i].onmouseout=function()
+    {
+      startMove(this,20);
+    };
+  }
+  function startMove(obj,iTarget)
+  {
+    clearInterval(obj.timer);
+    obj.timer = setInterval(function ()
+    {
+     /* if (obj.alpha<iTarget)
+      {
+        speed = 10;
+      }
+      else
+      {
+        speed = -10;
+      }*/
+      speed=(iTarget-speed)/5;
+      speed=(speed)>0?Math.ceil(iTarget-obj.alpha):Math.floor(iTarget-obj.alpha);
+      if (obj.alpha === iTarget)
+      {
+        clearInterval(obj.timer);
+      }
+      else
+      {
+        obj.alpha = obj.alpha + speed;
+        obj.style.filter = 'alpha(opacity=' + obj.alpha + ')';
+        obj.style.opacity = obj.alpha/100;
+      }
+    }, 50);
+  }
+</script>
+</body>
+</html>
